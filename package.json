@@ -1,7 +1,7 @@
 {
   "name": "searchjs",
   "description": "A library for filtering JavaScript objects based on a json SQL-like language, jsql",
-  "version": "1.1.0",
+  "version": "1.0.2",
   "url": "http://github.com/deitch/searchjs",
   "author": "Avi Deitcher (https://github.com/deitch)",
   "license": "MIT",
@@ -27,10 +27,9 @@
     "node": ">=0.8"
   },
   "main": "./lib/searchjs.js",
-  "module": "src/searchjs.js",
+  "module": "./lib/searchjs.esm.js",
   "files": [
-    "/lib",
-    "src"
+    "/lib"
   ],
   "repository": {
     "type": "git",
@@ -51,6 +50,7 @@
     "uglify-js": "^3.4.1"
   },
   "scripts": {
+    "prepare": "npm run build",
     "build": "NODE_ENV=prod rollup -c && npm run uglify",
     "prepublishOnly": "npm run-script build",
     "uglify": "uglifyjs ./lib/searchjs.js --compress --mangle --comments -o ./lib/searchjs.min.js",
@@ -58,5 +58,7 @@
     "test-watch": "NODE_ENV=test mocha --watch --require  @babel/register ./test/test.js --reporter spec",
     "coverage": "nyc npm test"
   },
-  "dependencies": {}
+  "dependencies": {
+    "bignumber.js": "^9.0.1"
+  }
 }
